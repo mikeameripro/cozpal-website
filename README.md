@@ -1,226 +1,221 @@
-# 🧸 CozPal 官网 (cozpal.ai)
+# CozPal 官网 — cozpal.ai
 
-暖暖品牌官网 — 面向 B2B 工厂老板和品牌商的专业展示站。
+> 暖暖 AI 模组 — 让每一台设备，都有温度
+
+B2B 官网，面向工厂老板和品牌商，展示 AI 智能陪伴模组产品方案。
+
+## 快速开始
+
+```bash
+npm install
+npm run dev     # → http://localhost:3000
+npm run build   # 生产构建
+```
 
 ## 技术栈
 
 | 技术 | 版本 | 用途 |
 |------|------|------|
-| **Next.js** | 15+ | App Router, Server Components, SSR/SSG |
-| **TypeScript** | 5+ | 类型安全 |
-| **Tailwind CSS** | 4 | Utility-first CSS（CSS-based config） |
-| **Framer Motion** | 11+ | 页面过渡和滚动动画 |
-| **Lucide Icons** | latest | 现代简洁图标库 |
-| **部署** | Vercel | 免费方案，全球 CDN |
+| Next.js | 16 (App Router) | React 全栈框架，SSR + SSG |
+| Tailwind CSS | 4 | Utility-first CSS（通过 `@theme` 自定义 token） |
+| Framer Motion | 12 | 页面过渡和滚动动画 |
+| Lucide Icons | latest | 现代简洁图标库 |
+| TypeScript | 5 | 类型安全 |
 
-## 快速开始
+**部署目标**: Vercel（绑定域名 cozpal.ai，Cloudflare DNS）
 
-```bash
-cd cozpal-website
-npm install
-npm run dev     # http://localhost:3000
-```
+---
 
 ## 项目结构
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # 根布局（字体 + Header + Footer）
-│   ├── page.tsx            # 首页（完整实现）
-│   ├── globals.css         # 全局样式 + 设计 tokens
-│   ├── solutions/page.tsx  # 产品方案（骨架）
-│   ├── scenarios/page.tsx  # 应用场景（骨架）
-│   ├── technology/page.tsx # 技术能力（骨架）
-│   ├── partnership/page.tsx # 合作方式（骨架）
-│   ├── about/page.tsx      # 关于我们（骨架）
-│   └── contact/page.tsx    # 联系我们（骨架）
-│
+├── app/                    # Next.js App Router 页面
+│   ├── layout.tsx          # 根布局（字体、Header、Footer）
+│   ├── page.tsx            # 首页 ✅ 完整实现
+│   ├── globals.css         # 全局样式 + 设计 token（@theme）
+│   ├── solutions/page.tsx  # 产品方案 ✅ 基础实现
+│   ├── scenarios/page.tsx  # 应用场景 🚧 待开发
+│   ├── technology/page.tsx # 技术能力 🚧 待开发
+│   ├── partnership/page.tsx# 合作方式 🚧 待开发
+│   ├── about/page.tsx      # 关于我们 🚧 待开发
+│   └── contact/page.tsx    # 联系我们 🚧 待开发
 ├── components/
 │   ├── layout/             # 布局组件
-│   │   ├── Header.tsx      # 导航栏（响应式 + 移动菜单）
-│   │   └── Footer.tsx      # 页脚（链接 + 品牌信息）
-│   │
-│   ├── ui/                 # 通用 UI 组件
-│   │   ├── Button.tsx      # 按钮（primary/secondary/outline/ghost）
-│   │   ├── Card.tsx        # 卡片（hover 效果 + accent 颜色）
-│   │   └── SectionHeading.tsx # 区块标题（label + title + subtitle）
-│   │
-│   ├── sections/           # 首页区块组件
-│   │   ├── HeroSection.tsx         # Hero 区域
-│   │   ├── ProductCardsSection.tsx # 产品模组卡片
-│   │   ├── StatsSection.tsx        # 数据滚动区
-│   │   ├── ScenariosPreview.tsx    # 场景预览
-│   │   └── CTASection.tsx          # CTA 行动号召
-│   │
-│   └── icons/              # 自定义图标（预留）
-│
-├── lib/
-│   ├── design-tokens.ts    # 设计系统 tokens（颜色/字体/动画预设）
-│   ├── site-config.ts      # 网站配置（导航/数据/产品模组）
-│   └── utils.ts            # 工具函数（cn class merge）
-│
-└── types/                  # TypeScript 类型定义（预留）
+│   │   ├── Header.tsx      # 固定导航栏（桌面 + 移动端汉堡菜单）
+│   │   └── Footer.tsx      # 页脚（产品/场景/公司 三栏链接）
+│   ├── sections/           # 首页各 section 组件
+│   │   ├── HeroSection.tsx         # 首屏 Hero
+│   │   ├── ProductCardsSection.tsx # 三大模组卡片
+│   │   ├── StatsSection.tsx        # 市场数据滚动动画
+│   │   ├── ScenariosPreview.tsx    # 应用场景预览
+│   │   └── CTASection.tsx          # 底部 Call-to-Action
+│   └── ui/                 # 可复用 UI 组件
+│       ├── Button.tsx      # 按钮（primary/secondary/outline/ghost）
+│       ├── Card.tsx        # 卡片容器（hover 动画 + accent 边框）
+│       └── SectionHeading.tsx # 区块标题（label + title + subtitle）
+└── lib/
+    ├── design-tokens.ts    # 设计 token（颜色、字体、间距、动画预设）
+    ├── site-config.ts      # 站点配置（导航、数据、产品模组定义）
+    └── utils.ts            # 工具函数（cn class merge）
 ```
+
+---
 
 ## 设计系统
 
-### 色彩
+### 颜色
 
-| 用途 | 色号 | CSS Variable |
-|------|------|-------------|
-| 主色（暖橙） | `#FF8C42` | `--color-primary` |
-| 辅色（柔黄） | `#FFD166` | `--color-secondary` |
-| 暖白背景 | `#FFF8F0` | `--color-bg-warm` |
-| 深灰文字 | `#2D3436` | `--color-text-dark` |
-| 科技蓝 | `#3B82F6` | `--color-accent` |
+| 用途 | CSS 变量 | Tailwind Class | 色号 |
+|------|----------|---------------|------|
+| 主色（暖橙） | `--color-primary` | `text-primary`, `bg-primary` | `#FF8C42` |
+| 辅色（柔黄） | `--color-secondary` | `text-secondary`, `bg-secondary` | `#FFD166` |
+| 暖白背景 | `--color-bg-warm` | `bg-bg-warm` | `#FFF8F0` |
+| 浅暖背景 | `--color-bg-light` | `bg-bg-light` | `#FFF3E6` |
+| 深灰文字 | `--color-text-dark` | `text-text-dark` | `#2D3436` |
+| 辅助文字 | `--color-text-muted` | `text-text-muted` | `#636E72` |
+| 科技蓝 | `--color-accent` | `text-accent`, `bg-accent` | `#3B82F6` |
 
 ### 字体
 
-- **中文**：Noto Sans SC（Google Fonts，自动加载）
-- **英文**：Inter（正文）/ Poppins（展示标题）
-- 通过 `next/font` 自动优化
+- **中文**: `Noto Sans SC`（通过 `next/font/google` 加载）
+- **英文**: `Inter`（正文）/ `Poppins`（Display/数字）
+- CSS 变量: `--font-heading`, `--font-body`, `--font-display`
 
-### CSS 工具类
+### 预设渐变 CSS 类
 
-```css
-.gradient-warm          /* 暖橙渐变背景 */
-.gradient-warm-subtle   /* 暖色柔和背景 */
-.gradient-tech          /* 科技蓝渐变 */
-.text-gradient-warm     /* 暖橙渐变文字 */
-.section-padding        /* 标准 section 间距 */
-.container-main         /* 标准容器宽度 */
-.animate-float          /* 浮动动画 */
-.animate-pulse-warm     /* 暖色脉冲 */
-```
+- `.gradient-warm` — 暖橙→柔黄（按钮、强调区块）
+- `.gradient-warm-subtle` — 暖白→浅暖（section 背景）
+- `.gradient-tech` — 科技蓝渐变（技术页面）
+- `.text-gradient-warm` — 文字暖色渐变
 
-### Tailwind 颜色
+### 布局工具类
 
-设计 token 已通过 `@theme inline` 注册为 Tailwind 颜色，可直接使用：
+- `.container-main` — 最大宽度 80rem + 响应式 padding
+- `.section-padding` — section 上下间距（手机 5rem，桌面 7rem）
 
-```html
-<div class="bg-primary text-white">          <!-- 暖橙背景 -->
-<div class="text-text-dark bg-bg-warm">      <!-- 深灰文字 + 暖白背景 -->
-<div class="border-accent text-accent">      <!-- 科技蓝 -->
-<div class="hover:bg-primary-dark">          <!-- 悬浮深暖橙 -->
-```
+### Framer Motion 动画预设
 
-## 组件使用规范
-
-### Button
-
-```tsx
-import { Button } from '@/components/ui';
-
-<Button variant="primary" size="lg">了解更多</Button>
-<Button variant="outline">联系我们</Button>
-<Button variant="ghost" size="sm">返回</Button>
-```
-
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| variant | string | 'primary' | primary / secondary / outline / ghost |
-| size | string | 'md' | sm / md / lg |
-
-### Card
-
-```tsx
-import { Card } from '@/components/ui';
-
-<Card accent="primary" hover>
-  <h3>标题</h3>
-  <p>内容</p>
-</Card>
-```
-
-| Prop | Type | Default | Options |
-|------|------|---------|---------|
-| accent | string | 'primary' | primary / secondary / accent |
-| hover | boolean | true | 悬浮效果 |
-
-### SectionHeading
-
-```tsx
-import { SectionHeading } from '@/components/ui';
-
-<SectionHeading
-  label="SOLUTIONS"
-  title="三大核心模组"
-  subtitle="不改产线，即插即用"
-  align="center"
-/>
-```
-
-### Framer Motion 预设
+在 `lib/design-tokens.ts` 导出 `motionPresets`：
 
 ```tsx
 import { motionPresets } from '@/lib/design-tokens';
 
-<motion.div {...motionPresets.fadeInUp}>内容</motion.div>
-<motion.div {...motionPresets.scaleIn}>内容</motion.div>
+// 使用方式
+<motion.div {...motionPresets.fadeInUp}>...</motion.div>
+<motion.div {...motionPresets.scaleIn}>...</motion.div>
 ```
 
-## Falcon 开发指南
+可用预设: `fadeInUp`, `fadeIn`, `staggerContainer`, `staggerItem`, `scaleIn`
 
-### 开发新页面步骤
+---
 
-1. **在 `src/app/<route>/page.tsx` 找到对应骨架文件**
-2. **复用现有组件**：`SectionHeading`, `Card`, `Button` 等
-3. **使用设计 token**：颜色用 Tailwind 变量（`text-primary`, `bg-bg-warm`）
-4. **添加动画**：使用 `motionPresets` 或自定义 Framer Motion 动画
-5. **内容数据**：产品/场景等数据在 `site-config.ts`，需要新数据可以在此扩展
-6. **图片占位**：用 emoji 或 placeholder div，后续替换为真实图片
+## 开发指南（给 Falcon）
 
-### 响应式设计
+### 开发新页面
 
-- **Mobile First**：先写移动端样式，再用 `md:` / `lg:` 适配桌面
-- **断点**：`sm:640px` / `md:768px` / `lg:1024px` / `xl:1280px`
-- **容器**：统一使用 `container-main` 类
-- **间距**：section 间距用 `section-padding`
+1. 每个页面都已有 stub，直接在对应文件中开发
+2. 子页面需要动画时使用 `'use client'` 指令
+3. 纯静态页面（如 about、technology）优先用 Server Component + `export const metadata`
 
-### 新建组件模板
+### 组件规范
 
 ```tsx
-'use client'; // 仅在需要交互/动画时加
+// 新 section 组件模板
+'use client';
 
 import { motion } from 'framer-motion';
 import { motionPresets } from '@/lib/design-tokens';
+import { SectionHeading, Card } from '@/components/ui';
 
-export interface MyComponentProps {
-  title: string;
-  // ...
-}
-
-export function MyComponent({ title }: MyComponentProps) {
+export function MySectionName() {
   return (
-    <motion.div {...motionPresets.fadeInUp}>
-      <h2 className="text-3xl font-bold text-text-dark">{title}</h2>
-    </motion.div>
+    <section className="section-padding bg-white">
+      <div className="container-main">
+        <SectionHeading
+          label="英文标签"
+          title="中文标题"
+          subtitle="描述文字"
+        />
+        {/* 内容 */}
+      </div>
+    </section>
   );
 }
 ```
 
-### 注意事项
+### UI 组件 API
 
-- ✅ Server Components 优先，仅在需要交互时加 `'use client'`
-- ✅ 所有文字使用设计 token 颜色（`text-text-dark`, `text-text-muted`）
-- ✅ 保持 Mobile First 响应式设计
-- ✅ SEO：每个页面都导出 `metadata` 对象
-- ❌ 不要硬编码颜色值，用 CSS 变量 / Tailwind 类
-- ❌ 不要使用 `<img>`，用 Next.js `<Image>` 组件
-- ❌ 不要忘记 `viewport: { once: true }` 防止重复触发动画
-
-## 部署
-
-```bash
-npm run build   # 检查构建
-npx vercel      # 部署到 Vercel
+**Button**
+```tsx
+<Button variant="primary|secondary|outline|ghost" size="sm|md|lg">
 ```
 
-域名：`cozpal.ai`（Cloudflare 注册，DNS 指向 Vercel）
+**Card**
+```tsx
+<Card accent="primary|secondary|accent" hover={true}>
+```
+
+**SectionHeading**
+```tsx
+<SectionHeading label="标签" title="标题" subtitle="副标题" align="center|left" />
+```
+
+### 注意事项
+
+- ⚠️ 用 `container-main` 而不是 `container`（自定义类）
+- ⚠️ 颜色用 Tailwind 变量名（如 `bg-bg-warm`），不要硬编码色号
+- ⚠️ 动画尽量用 `motionPresets`，保持全站一致
+- ⚠️ 移动端优先：先写手机布局，再用 `md:` / `lg:` 扩展
+- ✅ 所有内容文字后续由 Max 提供，目前用占位内容即可
+- ✅ 图片素材后续 AI 生成，目前用 emoji 或占位色块
+
+### 内容数据源
+
+- 站点配置: `lib/site-config.ts`（导航、产品模组、统计数据）
+- 暖暖芯规格: 参考 Obsidian `16_暖暖芯模组方案说明书.md`
+- 官网内容规划: 参考 Obsidian `12_暖暖官网规划.md`
+
+### Git 工作流
+
+```bash
+git checkout -b feat/xxx-page   # 功能分支
+git add .
+git commit -m "feat: 完成 xxx 页面"
+git push origin feat/xxx-page
+# 合并到 main 后 Vercel 自动部署
+```
 
 ---
 
-**架构设计：** Oscar 🎭
-**页面开发：** Falcon 🦅
-**内容提供：** Max 🐾
+## 页面开发清单
+
+| 页面 | 路由 | 状态 | 负责 |
+|------|------|------|------|
+| 首页 | `/` | ✅ 完成 | Oscar |
+| 产品方案 | `/solutions` | ✅ 基础完成 | Oscar |
+| 应用场景 | `/scenarios` | 🚧 待开发 | Falcon |
+| 技术能力 | `/technology` | 🚧 待开发 | Falcon |
+| 合作方式 | `/partnership` | 🚧 待开发 | Falcon |
+| 关于我们 | `/about` | 🚧 待开发 | Falcon |
+| 联系我们 | `/contact` | 🚧 待开发 | Falcon |
+
+---
+
+## 内容参考
+
+### 面向工厂老板的语言风格
+
+| ❌ 不要 | ✅ 要 |
+|---------|-------|
+| 颠覆性 AI 技术 | 让您的按摩仪多卖 3 倍价格 |
+| 端侧大语言模型推理 | 不用联网就能跟老人聊天 |
+| 情感状态机算法 | 设备会关心人，像家人一样 |
+| 模组化 SoC 方案 | 一个模组插进去，产线不用改 |
+
+### 核心信息（每个页面都要传递）
+
+1. **市场空白** — 460 亿市场里，¥200-3,000 的消费级产品零 AI
+2. **零门槛** — 不改产线、不招工程师、模组即插即用
+3. **高溢价** — 加了暖暖模组，产品售价翻 3-5 倍
+4. **先发优势** — 窗口期 6-12 个月，先做的定义品类
