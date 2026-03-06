@@ -1,6 +1,7 @@
 import {
   HeroSection,
   ProductCardsSection,
+  VideoPreview,
   StatsSection,
   ScenariosPreview,
   CTASection,
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ProductCardsSection />
+      <VideoPreview />
       <StatsSection />
       <ScenariosPreview />
       <CTASection />

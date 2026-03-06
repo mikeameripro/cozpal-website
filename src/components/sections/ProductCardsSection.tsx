@@ -3,14 +3,20 @@
 import { motion } from 'framer-motion';
 import { Brain, Eye, HeartPulse } from 'lucide-react';
 import { productModules } from '@/lib/site-config';
-import { motionPresets } from '@/lib/design-tokens';
 import { SectionHeading, Card } from '@/components/ui';
+import Image from 'next/image';
 
 const iconMap = {
   Brain,
   Eye,
   HeartPulse,
 } as const;
+
+const imageMap: Record<string, string> = {
+  core: '/products/core.svg',
+  eye: '/products/eye.svg',
+  care: '/products/care.svg',
+};
 
 const colorMap = {
   primary: {
@@ -44,6 +50,7 @@ export function ProductCardsSection() {
           {productModules.map((module, index) => {
             const Icon = iconMap[module.icon as keyof typeof iconMap];
             const colors = colorMap[module.color as keyof typeof colorMap];
+            const productImage = imageMap[module.id];
 
             return (
               <motion.div
@@ -54,6 +61,19 @@ export function ProductCardsSection() {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
               >
                 <Card accent={module.color as 'primary' | 'secondary' | 'accent'} className="h-full">
+                  {/* Product Image */}
+                  {productImage && (
+                    <div className="mb-5 rounded-xl overflow-hidden">
+                      <Image
+                        src={productImage}
+                        alt={module.title}
+                        width={400}
+                        height={400}
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  )}
+
                   {/* Icon */}
                   <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${colors.iconBg} mb-5`}>
                     <Icon size={28} className={colors.iconColor} />
