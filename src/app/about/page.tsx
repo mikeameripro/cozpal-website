@@ -33,7 +33,7 @@ export default function AboutPage() {
     >
       <section className="py-16 md:py-24">
         <div className="text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-dark mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-text-dark mb-6">
             {'让每一台设备，都有温度'}
           </h1>
           <p className="text-xl text-text-muted max-w-2xl mx-auto mb-8">

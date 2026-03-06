@@ -36,7 +36,7 @@ export default function ContactPage() {
     >
       <section className="py-16 md:py-24">
         <div className="text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-dark mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-text-dark mb-6">
             {'聊聊你的产品，看看暖暖能帮什么'}
           </h1>
           <p className="text-xl text-text-muted max-w-2xl mx-auto mb-8">
