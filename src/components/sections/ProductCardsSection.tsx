@@ -14,8 +14,8 @@ const iconMap = {
 
 const imageMap: Record<string, string> = {
   core: '/products/core.jpg',
-  eye: '/products/eye.svg',
-  care: '/products/care.svg',
+  eye: '/products/eye.jpg',
+  care: '/products/care.jpg',
 };
 
 const colorMap = {
