@@ -41,12 +41,16 @@ const upgrades = [
     originalPrice: '¥200-500',
     newPrice: '¥600-1200',
     multiplier: '3x 溢价',
+    oldFeatures: ['语音遥控开关机', '固定按摩模式', '无联网能力'],
+    newFeatures: ['AI 语音聊天陪伴', '按摩时讲故事、播新闻', '远程关怀：子女随时查看'],
   },
   {
     product: '理疗椅',
     originalPrice: '¥1000-3000',
     newPrice: '¥2000-5000',
     multiplier: '2x 升级',
+    oldFeatures: ['遥控器选模式', '定时关机', '无互动能力'],
+    newFeatures: ['AI 情感互动对话', '个性化理疗建议', '健康追踪 + 家人通知'],
   },
 ];
 
@@ -176,20 +180,30 @@ export default function SolutionsPage() {
                   </div>
                 </div>
 
-                <ul className="mt-4 space-y-2">
-                  <li className="flex items-center gap-2 text-text-muted">
-                    <span>🤖</span>
-                    <span>AI 识别与交互</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-text-muted">
-                    <span>📱</span>
-                    <span>APP 联动控制</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-text-muted">
-                    <span>💡</span>
-                    <span>OTA 远程升级</span>
-                  </li>
-                </ul>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  <div>
+                    <p className="text-xs font-semibold text-text-light mb-2 ">传统「遥控器」</p>
+                    <ul className="space-y-1.5">
+                      {item.oldFeatures?.map((f: string) => (
+                        <li key={f} className="flex items-start gap-1.5 text-xs text-text-light">
+                          <span className="text-red-400 mt-0.5">✕</span>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-primary mb-2 uppercase">暖暖「AI 陪伴」</p>
+                    <ul className="space-y-1.5">
+                      {item.newFeatures?.map((f: string) => (
+                        <li key={f} className="flex items-start gap-1.5 text-xs text-text-dark">
+                          <span className="text-green-500 mt-0.5">✓</span>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
