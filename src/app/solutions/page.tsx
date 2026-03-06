@@ -62,8 +62,8 @@ export default function SolutionsPage() {
       {/* Hero Section */}
       <section className="py-16 md:py-24">
         <div className="text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-dark mb-6">
-            把 AI 装进你的产品，只需要一颗芯
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-text-dark mb-6 whitespace-nowrap">
+            把AI装进你的产品，只需一颗芯
           </h1>
           <p className="text-xl text-text-muted max-w-2xl mx-auto mb-8">
             CozPal AI 芯模组为硬件制造商提供开箱即用的智能能力，从基础识别到高级感知，
